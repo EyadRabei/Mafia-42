@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>42 لعبة جماعية ودراسة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --dark: #1e272e;
+            --darker: #0f1519;
+            --light: #f5f6fa;
+            --gray: #808e9b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Tajawal', Arial, sans-serif;
+            background-color: var(--darker);
+            color: var(--light);
+            line-height: 1.6;
+        }
+        
+        @font-face {
+            font-family: 'Tajawal';
+            src: url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .game-logo {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            margin: 2rem auto;
+            display: block;
+            filter: drop-shadow(0 0 10px rgba(108, 92, 231, 0.5));
+        }
+        
+        section {
+            background-color: var(--dark);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            border-radius: 3px;
+        }
+        
+        .screenshots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .screenshots img {
+            width: 100%;
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border: 2px solid var(--gray);
+        }
+        
+        .screenshots img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
+        }
+        
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .feature-item {
+            background: rgba(108, 92, 231, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s;
+        }
+        
+        .feature-item:hover {
+            transform: translateX(-5px);
+        }
+        
+        .feature-item i {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            margin: 1rem 0;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 12px rgba(108, 92, 231, 0.4);
+            border: none;
+            font-size: 1.1rem;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(108, 92, 231, 0.5);
+        }
+        
+        .contact-form {
+            margin-top: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--gray);
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .social-links {
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: var(--light);
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .features-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>42 لعبة جماعية ودراسة</h1>
+        <p>تجربة تعليمية تفاعلية ممتعة للجميع</p>
+    </header>
+
+    <div class="container">
+        <img src="game-logo.png" alt="شعار اللعبة" class="game-logo">
+        
+        <section>
+            <h2>حول اللعبة</h2>
+            <p>42 لعبة جماعية وتفاعلية مصممة لتحسين المهارات التعليمية والذهنية بطريقة ممتعة وجذابة. تتضمن اللعبة تحديات تعليمية متنوعة تناسب جميع الأعمار وتطور القدرات المعرفية.</p>
+        </section>
+        
+        <section>
+            <h2>لقطات من اللعبة</h2>
+            <div class="screenshots">
+                <img src="screenshot1.png" alt="لقطة شاشة للعبة">
+                <img src="screenshot2.png" alt="لقطة شاشة للعبة">
+                <img src="screenshot3.png" alt="لقطة شاشة للعبة">
+                <img src="screenshot4.png" alt="لقطة شاشة للعبة">
+            </div>
+        </section>
+        
+        <section>
+            <h2>مميزات اللعبة</h2>
+            <div class="features-list">
+                <div class="feature-item">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>42 لعبة متنوعة</h3>
+                    <p>مجموعة واسعة من الألعاب التعليمية والترفيهية</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-users"></i>
+                    <h3>متعددة اللاعبين</h3>
+                    <p>إمكانية اللعب مع الأصدقاء والعائلة</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-brain"></i>
+                    <h3>تنمية المهارات</h3>
+                    <p>تحسين الذاكرة، التركيز، والمهارات الحسابية</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-child"></i>
+                    <h3>مناسبة للجميع</h3>
+                    <p>تصميم سهل الاستخدام لجميع الأعمار</p>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>تحميل اللعبة</h2>
+            <p>حجم التطبيق: 459 MB | متوفر الآن على متجر جوجل بلاي</p>
+            <a href="https://play.google.com/store/search?q=mafia42&c=apps" class="download-btn">
+                <i class="fab fa-google-play"></i> تحميل اللعبة
+            </a>
+        </section>
+        
+        <section>
+            <h2>تواصل معنا</h2>
+            <div class="contact-form">
+                <form action="https://formsubmit.co/eyad.rabeihassan@gmail.com" method="POST">
+                    <div class="form-group">
+                        <label for="name">اسمك</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">رسالتك</label>
+                        <textarea id="message" name="message" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="download-btn">
+                        <i class="fas fa-paper-plane"></i> إرسال الرسالة
+                    </button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://x.com/mafia42us?lang=ar"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/mafia42.global/?hl=ar"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/channel/UC0rKoqLYQWipqhtdNZ-bVQQ"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.facebook.com/@mafia42global/"><i class="fab fa-facebook"></i></a>
+        </div>
+        <p>© 2025 جميع الحقوق محفوظة | 42 لعبة جماعية ودراسة</p>
+    </footer>
+</body>
+</html>
